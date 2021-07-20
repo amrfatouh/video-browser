@@ -9,5 +9,5 @@ export default function VideoList({ videos, onVideoItemClick }) {
       onVideoItemClick={onVideoItemClick}
     />
   ));
-  return <div>{returnedVideos}</div>;
+  return <div className="ui relaxed divided list">{returnedVideos}</div>;
 }
