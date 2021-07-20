@@ -1,0 +1,44 @@
+general flow
+  use search bar to get search term from the user
+  make a request to youtube api with the search term
+  use the received videos to show list of videos
+  when a video is clicked, show the video in video player, show title & description
+
+SearchBar
+  the component contains text input where user type search term
+  on submitting the search term, the term should be passed to the App through a method in props
+  the component would receive a method called onSearchSubmit to be invoked and passed the term
+  the App component should define this method and should use the term to make a request
+
+requesting
+  App component should use axios to send a get request to the url of youtube api specific to search
+  the request should contain some parameters specified in the youtube api docs
+  we can make an axios custom client holding the base url and some fixed parameters
+  we should leave the search term parameter and "/search/" to be specified while using the custom client
+  we use the term sent from the SearchBar (using the method passed by App) to make the request
+  when the videos are returned, we store them in the state of App component
+
+showing the video list
+  make VideoList component
+    the component receives a list of videos to be shown
+    the component maps each video to a VideoItem component and passes the video details to it
+  make VideoItem component
+    the component receives a video to be shown
+    it extracts the video title & thumbnail url and view the title and thumbnail
+
+showing the video details
+  knowing which video is clicked
+    when clicking a VideoItem, that item should be passed to App
+    define a method in App component that receives a video to be stored in the state
+    this method is called onVideoItemClick
+    it is passed to VideoList then to VideoItem
+    it is invoked when the VideoItem is clicked
+  showing the clicked video
+    make VideoDetail item that receives a video to be shown
+    show the video title & description
+    show an iframe of the video
+
+adding loading
+  when the search input is submitted, set isLoading property in App state to true
+  when the request arrives, set it to false
+  if isLoading is true, render "Loading..." text, else don't render anything
